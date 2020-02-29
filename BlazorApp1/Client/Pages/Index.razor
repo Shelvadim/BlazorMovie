@@ -5,15 +5,25 @@
     <div>
         <h3>Movie</h3>
        
-        <MoviesList/>
+        <MoviesList Movies="movies"/>
     </div>
 
 @code{
-        
 
-    
+    private List<Movie> movies;
+    protected override void OnInitialized()
+    {        
+        movies = new List<Movie>()
+        {
+            new Movie(){Title = "Movie 1", ReleaseDate = new DateTime(2017, 2, 13) },
+            new Movie(){Title = "Other movie", ReleaseDate = new DateTime(2019, 2, 14) },
+            new Movie(){Title = "The Batman", ReleaseDate = new DateTime(2021, 2, 15) }
+        };
 
-    
+    }
+
+
+
 
 }
 

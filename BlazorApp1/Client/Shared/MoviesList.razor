@@ -1,35 +1,29 @@
-﻿@if (movies == null)
+﻿@if (Movies == null)
 {
     <text>Loading...</text>
     <img src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
 }
-else if (movies.Count == 0)
+else if (Movies.Count == 0)
 {
     <text>No records to show</text>
 }
 else
 {
-    @foreach (var movie in movies)
+
+    <input type="checkbox" @bind="displayButtons"/>
+
+    @foreach (var movie in Movies)
     {
-        <p>Title:@movie.Title</p>
-        <p>Release Date:@movie.ReleaseDate.ToString("dd MMM yyyy")</p>
+        <IndividualMovie Movie="movie" DisplayButtons="displayButtons"/>
     }
 
 }
 
 @code {
-    List<Movie> movies;
 
-    protected async  override Task OnInitializedAsync()
-    {
-        await Task.Delay(2000);
-        movies = new List<Movie>()
-        {
-            new Movie(){Title = "Movie 1", ReleaseDate = new DateTime(2017, 2, 13) },
-            new Movie(){Title = "Other movie", ReleaseDate = new DateTime(2019, 2, 14) },
-            new Movie(){Title = "The Batman", ReleaseDate = new DateTime(2021, 2, 15) }
-        };
+    [Parameter] public List<Movie> Movies{ get; set; }
 
-    }
+    bool displayButtons = false;
+    
 
 }
